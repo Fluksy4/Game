@@ -14,8 +14,6 @@ namespace GameProgram
 		void Run()
 		{
 			bullsAndCows.Mem();
-			int x = 1234;
-			string s = x.ToString();
 			while(true)
 			{
 				string input = Read();
