@@ -82,12 +82,14 @@ namespace ConsoleApplication4
 
         public void Mem()
         {
-            mnum = new int[4] { 1, 2, 3, 4 };
+            Random random = new Random();
+            //mnum = new int[4] { 1, 2, 3, 4 };
+            mnum = new int[4] { random.Next(9), random.Next(9), random.Next(9), random.Next(9) };
             bool b;
             do
             {
                 b = Uni(mnum);
-                //Console.WriteLine(b);
+                Console.WriteLine(b);
             } while(!b);
         }
 
