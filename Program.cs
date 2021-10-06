@@ -10,6 +10,7 @@ namespace GameProgram
 			Console.WriteLine("Bulls and Cows");
 			bullsAndCows = new BullsAndCows();
 			Run();
+			Console.Write("Game over . . . ");
 		}
 		void Run()
 		{
@@ -116,7 +117,6 @@ namespace GameProgram
 			Game game;
 			game = new Game();
 			
-			Console.Write("Game over . . . ");
 			Console.ReadKey(true);
 		}
 	}
