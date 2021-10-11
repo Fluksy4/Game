@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 namespace ConsoleApplication1
 {
     class View
     {
-        public void WCom()
+        public void Hello()
         {
-            Console.WriteLine("Bulls and Cows");
+            Console.WriteLine("БИКОВЕ И КРАВИ");
+        }
+        public void IsNotUni(string str)
+        {
+            Console.WriteLine("в числото {0} има еднакви цифри", str);
         }
         public void GameOver()
         {
-            Console.WriteLine("Game over . . . ");
+            Console.WriteLine("Край на играта . . . ");
         }
         public void Win()
         {
-            Console.WriteLine("You Win");
+            Console.WriteLine("ПОБЕДА");
         }
         public string Read(int[] num)
         {
-            Console.WriteLine("enter number");
+            Console.WriteLine("Въведете число");
             string input = Console.ReadLine();
             if (input != "")
             {
@@ -42,59 +51,6 @@ namespace ConsoleApplication1
             Console.WriteLine("cow(s) {0}", cows);
         }
     }
-
-    class Game
-    {
-        BullsAndCows bullsAndCows;
-        View view;
-        public Game()
-        {
-            view = new View();
-            view.WCom();
-            bullsAndCows = new BullsAndCows();
-            Run();
-            view.GameOver();
-        }
-        void Run()
-        {
-            bullsAndCows.Mem();
-            while (true)
-            {
-                string input;
-                bool b;
-                do
-                {
-                    input = Read();
-                    b = bullsAndCows.Uni(bullsAndCows.fnum);
-                    //Console.WriteLine(b);
-                } while (!b);
-                if (input != "0000")
-                {
-                    bullsAndCows.Search();
-                    Write();
-                    if (bullsAndCows.bulls == 4)
-                    {
-                        view.Win();
-                        return;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-        string Read()
-        {
-            return view.Read(bullsAndCows.fnum);
-        }
-
-        public void Write()
-        {
-            view.Write(bullsAndCows.bulls, bullsAndCows.cows);
-        }
-    }
-
     class BullsAndCows
     {
         public int[] mnum;
@@ -121,7 +77,6 @@ namespace ConsoleApplication1
             do
             {
                 b = Uni(mnum);
-                //Console.WriteLine(b);
             } while (!b);
         }
 
@@ -169,6 +124,57 @@ namespace ConsoleApplication1
         }
 
     }
+    class Game
+    {
+        BullsAndCows bullsAndCows;
+        View view;
+        public Game()
+        {
+            view = new View();
+            view.Hello();
+            bullsAndCows = new BullsAndCows();
+            Run();
+            view.GameOver();
+        }
+        void Run()
+        {
+            bullsAndCows.Mem();
+            while (true)
+            {
+                string input;
+                bool b;
+                do
+                {
+                    input = Read();
+                    if (input == "0000")
+                    {
+                        return;
+                    }
+                    b = bullsAndCows.Uni(bullsAndCows.fnum);
+                    if(!b)
+                    {
+                        view.IsNotUni(input);
+                    }
+                } while (!b);
+                bullsAndCows.Search();
+                Write();
+                if (bullsAndCows.bulls == 4)
+                {
+                    view.Win();
+                    return;
+                }
+            }
+        }
+        string Read()
+        {
+            return view.Read(bullsAndCows.fnum);
+        }
+        public void Write()
+        {
+            view.Write(bullsAndCows.bulls, bullsAndCows.cows);
+        }
+    }
+   
 
     class Program
     {
